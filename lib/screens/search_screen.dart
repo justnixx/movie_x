@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_x/components/app_header.dart';
-import 'package:movie_x/components/movie_card.dart';
+import 'package:movie_x/components/detailed_movie_card.dart';
 import 'package:movie_x/constants/strings.dart';
 import 'package:movie_x/models/movie.dart';
 import 'package:movie_x/services/movie_service.dart';
@@ -118,7 +118,9 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemBuilder: (context, index) {
                       final currentMovieOrShow = moviesOrShows[index];
 
-                      return MovieCard(movie: currentMovieOrShow);
+                      return DetailedMovieCard(
+                        movie: currentMovieOrShow,
+                      );
                     },
                   ),
           )

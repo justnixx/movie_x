@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_x/components/app_header.dart';
 import 'package:movie_x/constants/constants.dart';
+import 'package:movie_x/constants/strings.dart';
+import 'package:movie_x/utils/url_util.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -10,37 +12,22 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppHeader.build(
         context: context,
+        title: AppStrings.about,
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Movie X',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  '.',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Text(
-              'Developed with ❤️\nby ℵi✗✗',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
+            GestureDetector(
+              onTap: () => openUrl(AppConstants.devUrl),
+              child: Text(
+                'Developed with ❤️\nby ℵi✗✗',
+                textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
-            const Text('GitHub: @justnixx\nYouTube: @nomagix'),
             const SizedBox(
               height: 50,
             ),

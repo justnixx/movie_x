@@ -7,28 +7,25 @@ import 'package:movie_x/utils/string_utils.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
-  const MovieCard({super.key, required this.movie});
+  final bool isFirstItem;
+  const MovieCard({super.key, required this.movie, required this.isFirstItem});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(
-        bottom: 20,
-        left: 20,
-        right: 20,
-      ),
+      margin: EdgeInsets.only(left: isFirstItem ? 0 : 20),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(12),
         ),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Movie poster
           MoviePoster(
             imageUrl: movie.posterPath,
-            height: 137,
+            height: 273,
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -40,40 +37,19 @@ class MovieCard extends StatelessWidget {
             ),
           ),
 
-          // Horizontal spacing between the poster and details
+          // Vertical spacing between poster and title
           const SizedBox(
-            width: 12,
+            height: 12,
           ),
 
-          // Movie details (title and overview)
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Movie title
-                Text(
-                  movie.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
+          // Movie title
+          Text(
+            truncateTo(text: movie.title),
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
 
-                // Vertical spacing between title and overview
-                const SizedBox(
-                  height: 12,
-                ),
-
-                // Movie overview (truncated)
-                Text(
-                  truncateTo(text: movie.overview, to: 120),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-
-                // Star rating
-                StarRating(movie: movie),
-              ],
-            ),
-          )
+          // Star rating
+          StarRating(movie: movie),
         ],
       ),
     );

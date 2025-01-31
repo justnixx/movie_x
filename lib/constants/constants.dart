@@ -11,5 +11,6 @@ class AppConstants {
   static const String imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
   static const String imagePlaceHolderUrl = 'lib/assets/images/placeholder.png';
   static const String tmdbLogo = 'lib/assets/images/tmdb_blue_square.png';
+  static const String devUrl = 'https://nixx.dev';
   static var accessToken = dotenv.env['API_ACCESS_TOKEN'];
 }
